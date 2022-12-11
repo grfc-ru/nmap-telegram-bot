@@ -23,10 +23,10 @@ telegram:
 
 scan:
   hosts:
-    - host: 8.8.8.0/24      #Scan network
+    - host: 8.8.8.0/24      #scan network
       ports:
         - 3389              #scan port
-    - host: google.com      #Scan host
+    - host: google.com      #scan host
       ports:
         - 80                #scan port
         - 443               #scan port

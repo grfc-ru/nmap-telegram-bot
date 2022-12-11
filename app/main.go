@@ -64,10 +64,15 @@ func botUpdate(bot *tgbotapi.BotAPI, hosts []struct {
 	Ports []uint16
 }) {
 
-	// Create string for HTTP(s) monitoring sites
-	hostString := ""
+	// Create string for list scanning hosts
+	listString := ""
 	for _, host := range hosts {
-		hostString += host.Host + "\n"
+		ports := ""
+		for _, port := range host.Ports {
+			ports += strconv.FormatUint(uint64(port), 10) + ","
+		}
+
+		listString += host.Host + " ports: " + ports + "\n"
 	}
 
 	// Telegram bot listener
@@ -89,7 +94,7 @@ func botUpdate(bot *tgbotapi.BotAPI, hosts []struct {
 		case "start":
 			msg.Text = "Hi, I am a NMAP scanner bot! Your (group) ID = " + strconv.FormatInt(update.Message.Chat.ID, 10)
 		case "list":
-			msg.Text = "Scanned hosts:\n" + hostString
+			msg.Text = "Scanned hosts:\n" + listString
 		default:
 			msg.Text = "I don't know that command"
 		}

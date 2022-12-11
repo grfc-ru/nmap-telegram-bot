@@ -29,7 +29,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: leech001/telegram-site-monitor
+          images: leech001/nmap-telegram-bot
           tags: |
             type=ref,event=tag
       

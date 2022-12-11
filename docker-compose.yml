@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    image: leech001/...
+    image: leech001/nmap-telegram-bot
     restart: always
     volumes:
       - ./conf:/app/conf:ro
