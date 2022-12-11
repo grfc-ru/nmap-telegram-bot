@@ -6,7 +6,7 @@ RUN CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o
 
 
 FROM alpine:latest
-RUN apk add --no-cache bash nmap
+RUN apk add --no-cache nmap
 WORKDIR /app
 COPY --from=builder /build/monitor .
 CMD sh -c "./monitor"
