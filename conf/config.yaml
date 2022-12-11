@@ -1,0 +1,16 @@
+app:
+  update: 60
+
+telegram:
+  token: 244516775:AAGZUrt9eQjhGSsFFpbjyNA9su6gQU-Qs
+  group: -6596563379
+
+scan:
+  hosts:
+    - host: 8.8.8.0/24
+      ports:
+        - 3389
+    - host: google.com
+      ports:
+        - 80
+        - 443
