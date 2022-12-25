@@ -20,8 +20,12 @@ type Config struct {
 	}
 	Scan struct {
 		Hosts []struct {
-			Host  string
-			Ports []uint16
+			Host      string
+			Ports     []string
+			Exclusion struct {
+				Hosts []string
+				Ports []string
+			}
 		}
 	}
 }
@@ -60,8 +64,12 @@ func main() {
 
 // Telegram bot for listening to incoming commands
 func botUpdate(bot *tgbotapi.BotAPI, hosts []struct {
-	Host  string
-	Ports []uint16
+	Host      string
+	Ports     []string
+	Exclusion struct {
+		Hosts []string
+		Ports []string
+	}
 }) {
 
 	// Create string for list scanning hosts
@@ -69,7 +77,7 @@ func botUpdate(bot *tgbotapi.BotAPI, hosts []struct {
 	for _, host := range hosts {
 		ports := ""
 		for _, port := range host.Ports {
-			ports += strconv.FormatUint(uint64(port), 10) + ","
+			ports += port + ","
 		}
 
 		listString += host.Host + " ports: " + ports + "\n"

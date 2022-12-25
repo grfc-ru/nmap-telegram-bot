@@ -9,8 +9,15 @@ scan:
   hosts:
     - host: 8.8.8.0/24
       ports:
+        - 20-23
         - 3389
+      exclusion:
+        hosts:
+          - 8.8.8.1
+        ports:
+          - 22
     - host: google.com
       ports:
         - 80
         - 443
+  

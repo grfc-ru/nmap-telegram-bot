@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"strconv"
 	"time"
 
 	"github.com/Ullaakut/nmap/v2"
@@ -11,18 +10,37 @@ import (
 )
 
 // Scanning hosts for open ports
-func nmapScan(update uint16, bot *tgbotapi.BotAPI, group int64, host struct {
-	Host  string
-	Ports []uint16
-}) {
+func nmapScan(update uint16, bot *tgbotapi.BotAPI, group int64, hosts struct {
+	Host      string
+	Ports     []string
+	Exclusion struct {
+		Hosts []string
+		Ports []string
+	}
+},
+) {
 	ports := ""
-	for _, port := range host.Ports {
-		ports += strconv.FormatUint(uint64(port), 10) + ","
+	for _, port := range hosts.Ports {
+		ports += port + ","
+	}
+
+	// Create exclusions hosts
+	ehosts := ""
+	for _, ehost := range hosts.Exclusion.Hosts {
+		ehosts += ehost + ","
+	}
+
+	// Create exclusions ports
+	eports := ""
+	for _, eport := range hosts.Exclusion.Ports {
+		eports += eport + ","
 	}
 
 	scanner, err := nmap.NewScanner(
-		nmap.WithTargets(host.Host),
+		nmap.WithTargets(hosts.Host),
+		nmap.WithTargetExclusion(ehosts),
 		nmap.WithPorts(ports),
+		nmap.WithPortExclusions(eports),
 	)
 	if err != nil {
 		log.Fatalf("Unable to create nmap scanner: %v", err)
