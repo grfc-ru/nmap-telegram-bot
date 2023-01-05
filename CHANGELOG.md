@@ -9,3 +9,6 @@
 
 ## [0.0.3] - 2022-12-25
 - [ ADD ] Exclusion hosts and ports in config;
+
+## [0.0.4] - 2023-01-05
+- [ FIX ] Bug fix for nmap with params;
