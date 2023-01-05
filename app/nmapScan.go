@@ -23,25 +23,52 @@ func nmapScan(update uint16, bot *tgbotapi.BotAPI, group int64, hosts struct {
 	for _, port := range hosts.Ports {
 		ports += port + ","
 	}
+	ports = RemoveChar(ports)
 
 	// Create exclusions hosts
 	ehosts := ""
 	for _, ehost := range hosts.Exclusion.Hosts {
 		ehosts += ehost + ","
 	}
+	ehosts = RemoveChar(ehosts)
 
 	// Create exclusions ports
 	eports := ""
 	for _, eport := range hosts.Exclusion.Ports {
 		eports += eport + ","
 	}
+	eports = RemoveChar(eports)
 
 	scanner, err := nmap.NewScanner(
 		nmap.WithTargets(hosts.Host),
-		nmap.WithTargetExclusion(ehosts),
 		nmap.WithPorts(ports),
-		nmap.WithPortExclusions(eports),
 	)
+
+	if ehosts != "" {
+		scanner, err = nmap.NewScanner(
+			nmap.WithTargets(hosts.Host),
+			nmap.WithTargetExclusion(ehosts),
+			nmap.WithPorts(ports),
+		)
+	}
+
+	if eports != "" {
+		scanner, err = nmap.NewScanner(
+			nmap.WithTargets(hosts.Host),
+			nmap.WithPorts(ports),
+			nmap.WithPortExclusions(eports),
+		)
+	}
+
+	if ehosts != "" && eports != "" {
+		scanner, err = nmap.NewScanner(
+			nmap.WithTargets(hosts.Host),
+			nmap.WithTargetExclusion(ehosts),
+			nmap.WithPorts(ports),
+			nmap.WithPortExclusions(eports),
+		)
+	}
+
 	if err != nil {
 		log.Fatalf("Unable to create nmap scanner: %v", err)
 	}
