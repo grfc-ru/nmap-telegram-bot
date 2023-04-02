@@ -12,7 +12,7 @@ import (
 
 type Config struct {
 	App struct {
-		Update uint16
+		Update uint32
 	}
 	Telegram struct {
 		Token string

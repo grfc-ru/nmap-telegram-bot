@@ -1,6 +1,6 @@
 module main
 
-go 1.19
+go 1.20
 
 require (
 	github.com/Ullaakut/nmap/v2 v2.2.2

@@ -10,7 +10,7 @@ import (
 )
 
 // Scanning hosts for open ports
-func nmapScan(update uint16, bot *tgbotapi.BotAPI, group int64, hosts struct {
+func nmapScan(update uint32, bot *tgbotapi.BotAPI, group int64, hosts struct {
 	Host      string
 	Ports     []string
 	Exclusion struct {
