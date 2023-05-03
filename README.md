@@ -1,5 +1,5 @@
 # Telegram bot for organizing constant monitoring of open ports on the network
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/grfc-ru/nmap-telegram-bot/docker-image.yml?label=BUILD%20AND%20PUBLISH%20APPLICATION&logo=GITHUB) [![GitHub](https://img.shields.io/badge/Git-Hub-purple.svg)](https://github.com/grfc-ru/nmap-telegram-bot) [![Docker](https://img.shields.io/badge/Docker-hub-2496ed.svg)](https://hub.docker.com/r/leech001/nmap-telegram-bot) [![License: WTFPL](https://img.shields.io/badge/license-WTFPL-brightgreen)](https://github.com/grfc-ru/nmap-telegram-bot/blob/master/LICENSE)  
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/grfc-ru/nmap-telegram-bot/docker-image.yml?label=BUILD%20AND%20PUBLISH%20APPLICATION&logo=GITHUB) [![GitHub](https://img.shields.io/badge/Git-Hub-purple.svg)](https://github.com/grfc-ru/nmap-telegram-bot) [![Docker](https://img.shields.io/badge/Docker-hub-2496ed.svg)](https://hub.docker.com/r/leech001/nmap-telegram-bot)
 
 Application for organizing constant monitoring of open ports on nodes. Used to monitor erroneous configurations on network equipment or hacker activity.
 
